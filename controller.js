@@ -17,3 +17,19 @@ exports.tampilSemuamahaSiswa = (req, res) => {
     }
   });
 };
+
+// menampikan semua data mahasiswa berdasarkan id
+exports.tampilBerdasarkanId = (req, res) => {
+  let id = req.params.id;
+  connection.query(
+    "SELECT * FROM mahasiswa WHERE id_mahasiswa = ?",
+    [id],
+    (error, rows, fileds) => {
+      if (error) {
+        connection.log(error);
+      } else {
+        response.ok(rows, res);
+      }
+    }
+  );
+};
